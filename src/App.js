@@ -8,7 +8,9 @@ import Login from './Components/Login'
 function App() {
   return (
     <div id='app'>
-      <Login />
+      <div id='login'>
+        <Login />
+      </div>
       <div id='container'>
         <Header />
         <Main />
