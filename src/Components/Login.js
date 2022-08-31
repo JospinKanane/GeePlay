@@ -1,25 +1,25 @@
-import React, {useState} from 'react'
-import {GoogleLogin, GoogleLogout} from 'react-google-login'
+import React, {useState} from 'react';
+import {GoogleLogin} from 'react-google-login';
+import Form from './Form';
+import Spotify from './Spotify';
 
 function Login() {
-    const [showLoginButton, setShowLoginButton] =useState(true)
-    const [showLogoutButton, setShowLogoutButton] = useState(false);
+  const [showLoginButton, setShowLoginButton] =useState(true);
   const clientId = "192676927536-mu33jqt6qnqkshf7n7hkj4b55457eqic.apps.googleusercontent.com"
+
   const onLoginSuccess = (res) =>{
-    console.log("Login successfully", res.profilObject);
+    console.log("Login successfully", res.profileObj);
     setShowLoginButton(false);
-    setShowLogoutButton(true);
   }
-  const onFailure = (err) =>{
-    console.log("Login failed", err);
+
+  const onFailure = (res) =>{
+    console.log("Login failed", res);
   }
-  const logout =()=>{
-    alert("Logout successfully");
-    setShowLogoutButton(false);
-    setShowLoginButton(true);
-  }
+
   return (
-    <div id='login-children'>
+    <div id='loginChildren'>
+      <Form />
+      <div className="alternative">OR</div>
       {showLoginButton ?
         < GoogleLogin 
           clientId={clientId} 
@@ -29,14 +29,8 @@ function Login() {
           cookiePolicy={'single_host_origin'} 
           /> : null 
       }
-
-      {showLogoutButton ?
-        < GoogleLogout 
-          clientId={clientId} 
-          buttonText="Sign out" 
-          onLogoutSuccess={logout} 
-        /> : null 
-      }
+      <div className="alternative">OR</div>
+      <Spotify/>
     </div>
   )
 }
