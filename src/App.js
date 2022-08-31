@@ -1,9 +1,9 @@
-import React from 'react'
-import Footer from './Components/Footer'
-import Header from './Components/Header'
-import Main from './Components/Main'
-import './App.css'
-import Login from './Components/Login'
+import React from 'react';
+import Header from './Components/Header';
+import Main from './Components/Main';
+import './App.css';
+import Login from './Components/Login';
+import 'bootstrap/dist/css/bootstrap.css'
 
 function App() {
   return (
@@ -14,7 +14,6 @@ function App() {
       <div id='container'>
         <Header />
         <Main />
-        <Footer />
       </div>
     </div>
   )

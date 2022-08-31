@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import {Container, InputGroup, FormControl, Button, Row, Card}from 'react-bootstrap';
 
-/*const client_id = '9325728f503b4089b42eee9fe94f538f';
-//var client_secret = '9325728f503b4089b42eee9fe94f538f';
-const redirect_uri = 'http://localhost:3000';*/
+
+
 
 function Main() {
-
-  /*fetch('https://open.spotify.com/track/6kLCHFM39wkFjOuyPGLGeQ')
-    .then((answer) => answer.json()).then((data) => console.log(data))*/
+  const [inputValue, setInputValue]=useState('');
+  const handleOnchange = (e) => {
+    setInputValue(e.target.value);
+  }
+  const handleClick = (e) => {
+    console.log(inputValue)
+  }
 
   return (
-    <div id='main'>
-        
-    </div>
+    <Container id='main'>
+      <InputGroup className='mg-3 mt-5'  size='lg'>
+        <FormControl
+        className='rounded-2'
+          placeholder='Search for an Artist'
+          type='text'
+          onKeyPress={(e)=>{
+            if(e.key){
+              console.log('Entering search');
+            }
+          }}
+          onChange={handleOnchange}
+        />
+        <Button onClick={handleClick} className='ms-3 rounded-2 bg-success h-50 p-3'>Search</Button>
+      </InputGroup>  
+    </Container>
   )
 }
 
