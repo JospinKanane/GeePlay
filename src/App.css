@@ -31,9 +31,10 @@ label{
 }
 #inputForm > input{
     height: 40px;
-    width: 400px;
+    width: auto;
     padding-left: 20px;
     margin-left: 60px;
+    margin-right: 60px;
 }
 .alternative{
     text-align: center;
