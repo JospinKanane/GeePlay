@@ -78,3 +78,13 @@ button{
     width: 75vw;
     background-color: #fffbf8;
 }
+#main-container{
+    height: 75vh;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
+    color: rgba(0, 0, 0, 0.74);
+}
+#card{
+    cursor: pointer;
+}
