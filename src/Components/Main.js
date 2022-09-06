@@ -7,7 +7,7 @@ function Main() {
   const [inputValue, setInputValue]=useState('');
   const [accessToken, setAccessToken] = useState('');
   const [artistAlb, setArtistAlb] = useState([]);
-  const [tracksAlb, setTracksAlb] = useState([]);
+  const [tracksAlb, setTracksAlb] = useState('');
 
   useEffect(() => {
     const authParams = {
@@ -22,7 +22,9 @@ function Main() {
       .then(date => setAccessToken(date.access_token))
 
   },[])
-    //An request to get artists id
+    
+  //An request to get artists id
+
   const searchPams = {
     method: 'GET',
     headers: {
@@ -33,6 +35,7 @@ function Main() {
 
   async function search(){
     console.log('searching for ' + inputValue + ' Songs')
+    
     //Getting the artists id
 
     let artistID = await fetch(`https://api.spotify.com/v1/search?q=${inputValue}&type=artist&limit=50\n`, searchPams)
@@ -52,11 +55,11 @@ function Main() {
 
     //Getting the playlists from album
 
-    let tracks = await fetch('https://api.spotify.com/v1/artists/' + album + '/albums?album_type=SINGLE&offset=20', searchPams)
+    let tracks = await fetch(`https://api.spotify.com/v1/artists/${tracksAlb}/albums?album_type=SINGLE&offset=20`, searchPams)
       .then(response => response.json())
       .then(data => console.log(data))
   }
-  //https://api.spotify.com/v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?album_type=SINGLE&offset=20&limit=10
+  
   console.log(artistAlb);
   console.log("the album ID is: " + tracksAlb)
 
@@ -72,11 +75,6 @@ function Main() {
         className='rounded-2'
           placeholder='Search for an Artist'
           type='text'
-          /*onKeyPress={(e)=>{
-            if(e.key){
-              search();
-            }
-          }}*/
           onChange={(e)=>setInputValue(e.target.value)}
         />
         <Button onClick={search} className='ms-3 rounded-2 bg-success h-50 p-3'>Search</Button>
