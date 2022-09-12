@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {GoogleLogin} from 'react-google-login';
+import React, { useState } from 'react';
+import { GoogleLogin } from 'react-google-login';
 import Form from './Form';
 import Spotify from './Spotify';
 

@@ -6,8 +6,11 @@ function Main() {
   const SECRET_ID ='83b2a9526d444810988a7df2d4522e9b';
   const [inputValue, setInputValue]=useState('');
   const [accessToken, setAccessToken] = useState('');
-  const [artistAlb, setArtistAlb] = useState([]);
-  const [tracksAlb, setTracksAlb] = useState('');
+  const [albums, setAlbums] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [tracks, setTracks] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
+
 
   useEffect(() => {
     const authParams = {
@@ -22,8 +25,6 @@ function Main() {
       .then(date => setAccessToken(date.access_token))
 
   },[])
-    
-  //An request to get artists id
 
   const searchPams = {
     method: 'GET',
@@ -38,30 +39,30 @@ function Main() {
     
     //Getting the artists id
 
-    let artistID = await fetch(`https://api.spotify.com/v1/search?q=${inputValue}&type=artist&limit=50\n`, searchPams)
+    let url = await fetch(`https://api.spotify.com/v1/search?q=${inputValue}&type=album,track,artist,playlist,show,episode&include_external=audio?limit=20`, searchPams)
      .then(response => response.json())
-     .then(data => {return data.artists.items[0].id})
-     console.log("Artist ID is " + artistID);
-
-    //Getting the albums with the artist id
-
-    let album = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=50\n', searchPams)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        setArtistAlb(data.items)
-        return setTracksAlb(data.items[0].id)
-      })
-
-    //Getting the playlists from album
-
-    let tracks = await fetch(`https://api.spotify.com/v1/artists/${tracksAlb}/albums?album_type=SINGLE&offset=20`, searchPams)
-      .then(response => response.json())
-      .then(data => console.log(data))
+     .then(data => {
+      console.log(data);
+      setTracks(data.tracks.items);
+      setPlaylists(data.playlists.items);
+      setAlbums(data.albums.items);
+      setArtists(data.artists.items);
+      return data;
+    })
   }
+
+  console.log('requete pour les chansons')
+  console.log(tracks)
+  console.log('requete pour les chansons')
+  console.log(artists)
+  console.log('requete pour les artistes' )
+  console.log(playlists)
+  console.log('requete pour les playlists')
+  console.log(albums)
+  console.log('requete pour les albums')
   
-  console.log(artistAlb);
-  console.log("the album ID is: " + tracksAlb)
+  //console.log(artistAlb);
+  //console.log("the album ID is: " + tracksAlb)
 
   function handleClick(){
     console.log("album clicked")
@@ -82,7 +83,7 @@ function Main() {
     </Container>
     <Container id='main-container'>
       <Row className='mx-3 mt-3 row row-cols-5 gap-3'>
-        {artistAlb.map((album, index) => {
+        {albums.map((album, index) => {
           return <Card key={index} id='card' onClick={handleClick}>
                     <Card.Img src={album.images[0].url}/>
                     <Card.Body>
