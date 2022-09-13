@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import {Container, InputGroup, FormControl, Button, Row, Card}from 'react-bootstrap';
+import Aside from './Aside';
+import Iframe from './pages/Iframe';
+// import Artists from './pages/Artists';
+// import Albums from './pages/Albums';
+// import Home from './pages/Home';
+// import Playlists from './pages/Playlists';
+// import Tracks from './pages/Tracks';
 
 function Main() {
   const CLIENT_ID ='9325728f503b4089b42eee9fe94f538f';
   const SECRET_ID ='83b2a9526d444810988a7df2d4522e9b';
-  const [inputValue, setInputValue]=useState('');
+  const [inputValue, setInputValue]=useState('Ed sheeran');
   const [accessToken, setAccessToken] = useState('');
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
   const [tracks, setTracks] = useState([]);
   const [playlists, setPlaylists] = useState([]);
 
+  const [play, setPlay]= useState(false);
+  const [close, setClose] = useState(true);
+  const [albumId, setAlbumId] = useState('');
 
   useEffect(() => {
     const authParams = {
@@ -23,6 +33,7 @@ function Main() {
     fetch('https://accounts.spotify.com/api/token', authParams)
       .then(response => response.json())
       .then(date => setAccessToken(date.access_token))
+      search();
 
   },[])
 
@@ -53,38 +64,63 @@ function Main() {
 
   console.log('requete pour les chansons')
   console.log(tracks)
-  console.log('requete pour les chansons')
-  console.log(artists)
   console.log('requete pour les artistes' )
-  console.log(playlists)
+  console.log(artists)
   console.log('requete pour les playlists')
-  console.log(albums)
+  console.log(playlists)
   console.log('requete pour les albums')
+  console.log(albums)
+  console.log("id de l'album est " + albumId)
+
   
   //console.log(artistAlb);
   //console.log("the album ID is: " + tracksAlb)
 
-  function handleClick(){
-    console.log("album clicked")
-  }
+  const player=()=>{
+    setPlay(true)
+    setClose(false)
+    setAlbumId(album.id)
+}
 
-  return (
+const quit=()=>{
+    setPlay(false)
+    setClose(true)
+}
+
+return (
+  <section id='container'>
+   <div id='header'>
+    <Aside />
+    { play && 
+      <Iframe 
+      play={play} 
+      quit={quit} 
+      player={player} 
+      close={close}
+      albumId={albumId}/>
+    } 
+   </div>
    <div id='main'>
-    <Container>
-      <InputGroup className='mg-3 mt-5'  size='lg'>
+    <Container className='display-flex align-items-center'>
+      <InputGroup className='mg-3 mt-5 w-50 h-'  size='sm'>
         <FormControl
-        className='rounded-2'
+        className='rounded-2 '
           placeholder='Search for an Artist'
           type='text'
           onChange={(e)=>setInputValue(e.target.value)}
         />
-        <Button onClick={search} className='ms-3 rounded-2 bg-success h-50 p-3'>Search</Button>
+        <Button onClick={search} className='ms-3 rounded-2 bg-success w-10 h-20'>Search</Button>
       </InputGroup>  
     </Container>
     <Container id='main-container'>
       <Row className='mx-3 mt-3 row row-cols-5 gap-3'>
         {albums.map((album, index) => {
-          return <Card key={index} id='card' onClick={handleClick}>
+          return <Card key={index} id='card' 
+                  onClick={()=>{
+                    setPlay(true)
+                    setClose(false)
+                    setAlbumId(album.id)
+                  }}>
                     <Card.Img src={album.images[0].url}/>
                     <Card.Body>
                       <Card.Title>{album.name}</Card.Title>
@@ -93,7 +129,9 @@ function Main() {
         })}
       </Row>
     </Container>
+
    </div>
+  </section>
   )
 }
 

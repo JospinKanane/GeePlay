@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './Components/Header';
 import Main from './Components/Main';
 import './App.css';
 import Login from './Components/Login';
@@ -11,8 +10,7 @@ function App() {
       <div id='login'>
         <Login />
       </div>
-      <div id='container'>
-        <Header />
+      <div>
         <Main />
       </div>
     </div>

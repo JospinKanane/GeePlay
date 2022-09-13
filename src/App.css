@@ -10,13 +10,16 @@ h2, h3{
     text-align: center;
 }
 #login{
-    background-color: #fffbf8;
+    background-color: rgba(0, 0, 0, 0.685);
     height: 95vh;
     width: 40vw;
     border-radius: 10px;
-    display: flex;
+    display: none;
     flex-direction: column;
-    justify-content: center;   
+    justify-content: center;
+    align-items: center;   
+    gap: 20px;
+    color: beige;
 }
 #inputForm{
     display: flex;
@@ -66,12 +69,14 @@ button{
 }
 
 #header{
-    height: 95vh;
-    width: 15vw;
+    height: auto;
+    width: 20vw;
     background-color:rgba(0, 0, 0, 0.685);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    padding-bottom: 10px;
     color:beige;
+    font-size: 20px;
 }
 #main{
     height: 95vh;
@@ -88,3 +93,19 @@ button{
 #card{
     cursor: pointer;
 }
+#nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 150px;
+}
+.nav-link{
+    color: beige;
+    font-size: 50px;
+    font-weight: bold;
+}
+span{
+    cursor: pointer;
+}
+
