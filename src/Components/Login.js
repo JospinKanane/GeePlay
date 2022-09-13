@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { GoogleLogin } from 'react-google-login';
-import Form from './Form';
+import React, {useState} from 'react';
+import {GoogleLogin} from 'react-google-login';
 import Spotify from './Spotify';
 
 function Login() {
@@ -18,8 +17,6 @@ function Login() {
 
   return (
     <div id='loginChildren'>
-      <Form />
-      <div className="alternative">OR</div>
       {showLoginButton ?
         < GoogleLogin 
           clientId={clientId} 
