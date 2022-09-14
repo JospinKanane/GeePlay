@@ -9,9 +9,9 @@ import Iframe from './pages/Iframe';
 // import Tracks from './pages/Tracks';
 
 function Main() {
-  const CLIENT_ID ='9325728f503b4089b42eee9fe94f538f';
-  const SECRET_ID ='83b2a9526d444810988a7df2d4522e9b';
-  const [inputValue, setInputValue]=useState('Ed sheeran');
+  const CLIENT_ID =process.env.REACT_APP_SECRET_ID;
+  const SECRET_ID =process.env.REACT_APP_SECRET_CODE;
+  const [inputValue, setInputValue]=useState("Ed sheeran");
   const [accessToken, setAccessToken] = useState('');
   const [albums, setAlbums] = useState([]);
   const [artists, setArtists] = useState([]);
@@ -32,9 +32,8 @@ function Main() {
     };
     fetch('https://accounts.spotify.com/api/token', authParams)
       .then(response => response.json())
-      .then(date => setAccessToken(date.access_token))
+      .then(date => setAccessToken(date.access_token));
       search();
-
   },[])
 
   const searchPams = {
@@ -45,12 +44,12 @@ function Main() {
     },
   }
 
-  async function search(){
+   function search(){
     console.log('searching for ' + inputValue + ' Songs')
     
-    //Getting the artists id
+    /** Getting ids of albums, ttracks, artists, playlists from Spotify API **/
 
-    let url = await fetch(`https://api.spotify.com/v1/search?q=${inputValue}&type=album,track,artist,playlist,show,episode&include_external=audio?limit=20`, searchPams)
+    let url = fetch(`https://api.spotify.com/v1/search?q=${inputValue}&type=album,track,artist,playlist,show,episode&include_external=audio?limit=20`, searchPams)
      .then(response => response.json())
      .then(data => {
       console.log(data);
@@ -72,16 +71,14 @@ function Main() {
   console.log(albums)
   console.log("id de l'album est " + albumId)
 
-  
-  //console.log(artistAlb);
-  //console.log("the album ID is: " + tracksAlb)
-
+/** Function that shows the iFrame spotify **/
   const player=()=>{
     setPlay(true)
     setClose(false)
     setAlbumId(album.id)
 }
 
+/** Function that shows off the iFrame spotify **/
 const quit=()=>{
     setPlay(false)
     setClose(true)
@@ -89,7 +86,7 @@ const quit=()=>{
 
 return (
   <section id='container'>
-   <div id='header'>
+   <div id='aside'>
     <Aside />
     { play && 
       <Iframe 
@@ -102,7 +99,7 @@ return (
    </div>
    <div id='main'>
     <Container className='display-flex align-items-center'>
-      <InputGroup className='mg-3 mt-5 w-50 h-'  size='sm'>
+      <InputGroup className='mg-3 mt-2 w-50 h-10'  size='sm'>
         <FormControl
         className='rounded-2 '
           placeholder='Search for an Artist'
@@ -115,15 +112,15 @@ return (
     <Container id='main-container'>
       <Row className='mx-3 mt-3 row row-cols-5 gap-3'>
         {albums.map((album, index) => {
-          return <Card key={index} id='card' 
+          return <Card key={index} className=' w-15 h-15' 
                   onClick={()=>{
                     setPlay(true)
                     setClose(false)
                     setAlbumId(album.id)
                   }}>
-                    <Card.Img src={album.images[0].url}/>
-                    <Card.Body>
-                      <Card.Title>{album.name}</Card.Title>
+                    <Card.Img src={album.images[0].url} className="rounded-circle w-10 h-10 mt-2 mb-0"/>
+                    <Card.Body className="h-5 w-15">
+                      <Card.Title>{album.name}</Card.Title >
                     </Card.Body>
                  </Card>
         })}
