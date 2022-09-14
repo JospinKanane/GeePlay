@@ -4,7 +4,7 @@ import Spotify from './Spotify';
 
 function Login() {
   const [showLoginButton, setShowLoginButton] =useState(true);
-  const clientId = "192676927536-mu33jqt6qnqkshf7n7hkj4b55457eqic.apps.googleusercontent.com"
+  const clientId = process.env.REACT_APP_GOOGLE_SECRET_CODE;
 
   const onLoginSuccess = (res) =>{
     console.log("Login successfully", res.profileObj);

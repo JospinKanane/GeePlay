@@ -1,10 +1,12 @@
 body{
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    align-content: center;
+    align-content: center; */
     background-color:rgba(0, 0, 0, 0.685);
+    width: 100%;
+    height: 100%;
 }
 h2, h3{
     text-align: center;
@@ -21,32 +23,32 @@ h2, h3{
     gap: 20px;
     color: beige;
 }
-#inputForm{
+/* #inputForm{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     gap: 20px;
-}
+} */
 label{
     margin-left: 60px;
     font-size: 20px;
 }
-#inputForm > input{
+/* #inputForm > input{
     height: 40px;
     width: auto;
     padding-left: 20px;
     margin-left: 60px;
     margin-right: 60px;
-}
+} */
 .alternative{
     text-align: center;
     font-size: 15px;
 }
-button{
+/* button{
     height: 40px;
     width: 200px;
-    background-color: blueviolet; 
+    background-color: #54b390; 
     color: beige; 
     text-align: center;
     margin-left: 50px;
@@ -54,41 +56,38 @@ button{
     margin-top: 10px;
     margin-bottom: 10px;
     cursor: pointer;
-}
+} */
 
 #container{
-    background-color: #fffbf8;
-    height: 95vh;
-    width: 90vw;
+    background-color: rgba(0,24,34,255);
+    height: 100%;
+    width: 100%;
     color: beige;
-    border-radius: 10px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    /* border-radius: 10px;
+    /* margin-top: 30px;
+    margin-bottom: 30px; **/
     display: flex;
     flex-direction: row;
 }
 
-#header{
-    height: auto;
+#aside{
+    height: 100vh;;
     width: 20vw;
     background-color:rgba(0, 0, 0, 0.685);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    padding-bottom: 10px;
     color:beige;
     font-size: 20px;
 }
 #main{
-    height: 95vh;
+    height: 100%;
     width: 75vw;
-    background-color: #fffbf8;
 }
 #main-container{
-    height: 75vh;
+    height: 87.5vh;
     overflow-y: scroll;
     scrollbar-color: rebeccapurple green;
     scrollbar-width: thin;
     color: rgba(0, 0, 0, 0.74);
+    margin-top: 15px;
 }
 #card{
     cursor: pointer;
@@ -99,6 +98,7 @@ button{
     align-items: center;
     gap: 20px;
     padding-top: 150px;
+    /* height: 100%; */
 }
 .nav-link{
     color: beige;
