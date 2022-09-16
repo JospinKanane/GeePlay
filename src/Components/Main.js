@@ -22,7 +22,7 @@ function Main() {
 
   const [play, setPlay]= useState(false);
   const [close, setClose] = useState(true);
-  const [albumId, setAlbumId] = useState('');
+  const [albumId, setAlbumId] = useState("");
 
   useEffect(() => {
     const authParams = {
