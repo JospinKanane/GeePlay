@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from './Components/Main';
-import './App.css';
+import './index.css'
 import Login from './Components/Login';
 import 'bootstrap/dist/css/bootstrap.css'
 

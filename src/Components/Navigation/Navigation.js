@@ -13,11 +13,11 @@ export default function Navigation() {
     <div>
       <Rooter>
         <nav id="nav">
-          <Link to='/' className='nav-link'>Home</Link>
-          <Link to='/Tracks' className='nav-link'>Tracks</Link>
-          <Link to='/Albums' className='nav-link'>Albums</Link>
-          <Link to='/Playlists' className='nav-link'>Playlists</Link>
-          <Link to='/Artists' className='nav-link'>Artists</Link>
+          <Link to='/' className='navLink'>Home</Link>
+          <Link to='/Tracks' className='navLink'>Tracks</Link>
+          <Link to='/Albums' className='navLink'>Albums</Link>
+          <Link to='/Playlists' className='navLink'>Playlists</Link>
+          <Link to='/Artists' className='navLink'>Artists</Link>
         </nav>
         <Routes>
           <Route path="/" component={Home}/>
