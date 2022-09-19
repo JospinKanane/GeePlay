@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const authEndPoint ="https://accounts.spotify.com/authorize";
-const clientID =process.env.REACT_APP_SECRET_ID;
+const clientID =process.env.REACT_APP_SPOTIFY_SECRET_ID;
 const REDIRECT_URI="http://localhost:3000";
 const SCOPE_DELIMITER="%20";
 const SCOPE = ["user-read-private",

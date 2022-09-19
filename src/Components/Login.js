@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {GoogleLogin} from 'react-google-login';
-import Spotify from './Spotify';
+// import Spotify from './Spotify';
+import Logo from '../assets/Logo.png'
 
 function Login() {
   const [showLoginButton, setShowLoginButton] =useState(true);
@@ -17,6 +18,8 @@ function Login() {
 
   return (
     <div id='loginChildren'>
+      <img src={Logo} alt='Logo' id='logoPageConnexion'/>
+      <h2>Get your favorite songs here</h2>
       {showLoginButton ?
         < GoogleLogin 
           clientId={clientId} 
@@ -24,10 +27,11 @@ function Login() {
           onSuccess={onLoginSuccess} 
           onFailure={onFailure} 
           cookiePolicy={'single_host_origin'} 
+          id='googleButton'
           /> : null 
       }
-      <div className="alternative">OR</div>
-      <Spotify/>
+      {/* <div className="alternative">OR</div>
+      <Spotify/> */}
     </div>
   )
 }
