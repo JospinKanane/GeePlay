@@ -92,7 +92,9 @@ h2{
     text-decoration: none;
 }
 #main-container{
-    margin-top: 30px;
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 20px;
     height: 79vh;
     width: 100vw;
     overflow: auto;
@@ -126,4 +128,11 @@ span{
 }
 button{
     background-color: #552b66;
+}
+.title{
+    color: beige;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
 }
