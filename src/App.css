@@ -87,12 +87,14 @@ label{
     width: 75vw;
 }
 #main-container{
-    height: 87.5vh;
-    overflow-y: scroll;
-    scrollbar-color: rebeccapurple green;
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    height: 79vh;
+    width: 100vw;
+    overflow: auto;
+    overflow-y: auto;
     scrollbar-width: thin;
-    color: rgba(0, 0, 0, 0.74);
-    margin-top: 15px;
 }
 #card{
     cursor: pointer;
