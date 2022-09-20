@@ -4,11 +4,13 @@ import Aside from './Aside';
 import Iframe from './pages/Iframe';
 import Logo from '../assets/Logo.png'
 import image from '../assets/image.jpg';
-// import Artists from './pages/Artists';
-// import Albums from './pages/Albums';
-// import Home from './pages/Home';
-// import Playlists from './pages/Playlists';
-// import Tracks from './pages/Tracks';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
+import Artists from './pages/Artists';
+import Albums from './pages/Albums';
+import Home from './pages/Home';
+import Playlists from './pages/Playlists';
+import Tracks from './pages/Tracks';
 
 function Main() {
   const client_Id = process.env.REACT_APP_SPOTIFY_SECRET_ID ;
@@ -22,7 +24,8 @@ function Main() {
 
   const [play, setPlay]= useState(false);
   const [close, setClose] = useState(true);
-  const [albumId, setAlbumId] = useState("");
+  const [albumId, setAlbumId] = useState('');
+  const [title, setTitle] = useState('Home');
 
   useEffect(() => {
     const authParams = {
@@ -42,7 +45,7 @@ function Main() {
     method: 'GET',
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "bearer " + accessToken
+      "Authorization": "Bearer " + accessToken
     },
   }
 
@@ -119,7 +122,7 @@ return (
 
       </div>  
     </Container>
-    <h2 className='title'>Home</h2>
+    <h2 className='title'>{title}</h2>
     <Container id='main-container'>
       <Row className='mx-3 mt-3 row row-cols-5 gap-6 text-center' id ='row'>
         {albums.map((album, index) => {
@@ -140,6 +143,17 @@ return (
       </Row>
     </Container>
 
+   </div>
+   <div>
+    <Router>
+      <Routes>
+        <Route path="/" component={Home}/>
+        <Route path="/Tracks" component={Tracks} title={title} setTitle={setTitle}/>
+        <Route path="/Albums" component={Albums} />
+        <Route path="/Playlists" component={Playlists} />
+        <Route path="/Artists" component ={Artists} />
+      </Routes>
+    </Router>
    </div>
   </section>
   )
