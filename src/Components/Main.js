@@ -42,7 +42,7 @@ function Main() {
     method: 'GET',
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + accessToken
+      "Authorization": "bearer " + accessToken
     },
   }
 
@@ -119,6 +119,7 @@ return (
 
       </div>  
     </Container>
+    <h2 className='title'>Home</h2>
     <Container id='main-container'>
       <Row className='mx-3 mt-3 row row-cols-5 gap-6 text-center' id ='row'>
         {albums.map((album, index) => {
